@@ -4,7 +4,7 @@ const orgRoutes = (app, db) => {
     // Reader helper method
     const readFile = (callback) => {
         db.readFile(DATA_PATH, 'utf8', (err, data) => {
-            callback(data)
+            callback(JSON.parse(data))
         });
     };
 
@@ -19,6 +19,23 @@ const orgRoutes = (app, db) => {
     app.get('/orgs', (req, res) => {
         readFile(data => {
             res.send(data);
+        });
+    });
+
+    // Create new org
+    app.post('/orgs', (req, res) => {
+        readFile(data => {
+            const creationDate = new Date();
+
+            const newOrg = {
+                ...req.body,
+                creationDate,
+            };
+            data.organizations.push(newOrg);
+
+            writeFile(JSON.stringify(data), () => {
+                res.status(200).send('Created new org');
+            });
         });
     });
 }
