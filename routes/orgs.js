@@ -8,6 +8,13 @@ const orgRoutes = (app, db) => {
         });
     };
 
+    // Writer helper method
+    const writeFile = (data, callback) => {
+        db.writeFile(DATA_PATH, data, 'utf8', err => {
+            callback()
+        })
+    }
+
     // Get all orgs
     app.get('/orgs', (req, res) => {
         readFile(data => {
