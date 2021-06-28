@@ -1,3 +1,3 @@
-const router = (app) => {};
+const router = (app, db) => {};
 
 module.exports = router;
