@@ -28,8 +28,11 @@ const orgRoutes = (app, db) => {
             const creationDate = new Date();
 
             // Pushes a new org into the array
+            // Specs specify that only the orgCode and name should be given
+            const { orgCode, name } = req.body;
             const newOrg = {
-                ...req.body,
+                orgCode,
+                name,
                 creationDate,
             };
             data.organizations.push(newOrg);
@@ -48,9 +51,11 @@ const orgRoutes = (app, db) => {
             // Get the index of the matching org and update it
             const { organizations } = data
             const index = organizations.findIndex(x => x.orgCode === orgCode);
+            // Specs specify that only the orgCode and name should be given
+            const { name } = req.body;
             const updatedOrg = {
-                ...req.body,
-                orgCode
+                orgCode,
+                name
             }
             organizations[index] = updatedOrg;
 
