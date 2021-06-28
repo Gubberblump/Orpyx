@@ -38,6 +38,25 @@ const orgRoutes = (app, db) => {
             });
         });
     });
+
+    // Update org
+    app.put('/orgs/:id', (req, res) => {
+        readFile(data => {
+            const orgCode = req.params['id'];
+
+            const { organizations } = data
+            const index = organizations.findIndex(x => x.orgCode === orgCode);
+            const updatedOrg = {
+                ...req.body,
+                orgCode
+            }
+            organizations[index] = updatedOrg;
+
+            writeFile(JSON.stringify(data), () => {
+                res.status(200).send(`Org ${orgCode} has been updated`);
+            })
+        })
+    })
 }
 
 module.exports = orgRoutes;
