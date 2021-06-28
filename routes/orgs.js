@@ -27,6 +27,7 @@ const orgRoutes = (app, db) => {
         readFile(data => {
             const creationDate = new Date();
 
+            // Pushes a new org into the array
             const newOrg = {
                 ...req.body,
                 creationDate,
@@ -44,6 +45,7 @@ const orgRoutes = (app, db) => {
         readFile(data => {
             const orgCode = req.params['id'];
 
+            // Get the index of the matching org and update it
             const { organizations } = data
             const index = organizations.findIndex(x => x.orgCode === orgCode);
             const updatedOrg = {
