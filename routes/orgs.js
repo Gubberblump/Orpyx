@@ -1,3 +1,5 @@
+// In a real imlementation the router should not know about the DB
+// but proper structure would be outside the scope of this example
 const orgRoutes = (app, db) => {
     const DATA_PATH = './data/orpyx-orgs.json'
 
