@@ -1,6 +1,7 @@
 // Express framework and body parsing middleware
 const express = require('express');
 const bodyParser = require('body-parser');
+// Using stock file system for reads / writes
 const db = require('fs')
 
 // Set up express instance to handle JSON data
